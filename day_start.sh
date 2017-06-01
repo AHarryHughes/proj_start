@@ -9,7 +9,13 @@ _MR_FILE=$(ls -Art | tail -n 1)
 echo $_MR_FILE
 cd $_CUR_DIR
 
-IFS=' ' read -a myarray <<<< $_MR_FILE
+VAR_loop=0
+for word in $_MR_FILE
+do
+	myarray[VAR_loop]=“$word"
+	VAR_loop=$VAR_loop+1
+done
+
 VAR_count=0
 VAR_spaceSlash="\\ "
 while [${myarray[@] -lt VAR_count]
