@@ -8,7 +8,7 @@ cd ~/downloads
 _MR_FILE=$(ls -Art | tail -n 1)
 echo $_MR_FILE
 cd $_CUR_DIR
-
+#add if statement for a file with no spaces
 VAR_loop=0
 myarray=
 for word in $_MR_FILE
@@ -20,9 +20,10 @@ do
 done
 echo $VAR_loop
 VAR_count=0
-VAR_spaceSlash='\\ '
+VAR_spaceSlash='\ '
 echo $VAR_spaceSlash
 _TMP=
+let VAR_loop_minus=$VAR_loop-1
 while [ $VAR_loop -gt $VAR_count ]
 do
 	echo "run while"
@@ -32,8 +33,7 @@ do
 		_TMP=${myarray[0]}$VAR_spaceSlash
 		echo $_TMP
 		echo "first if"
-	fi
-	if [ $VAR_count -eq $expr $VAR_loop - 1 ]
+	else [ $VAR_count -eq $VAR_loop_minus ]
 	then
 		_TMP=$_TMP${myarray[$VAR_count]}
 		echo $_TMP
@@ -44,12 +44,16 @@ do
 	echo $_TMP
 	let "VAR_count++"
 done
+#add another loop to remove the .zip part
 echo $_TMP
 echo $_MR_FILE
 
-#mv ~/Downloads/$_MR_FILE .
-#unzip $_MR_FILE
-#rm $_MR_FILE
+#add else statement for files with no spaces to put _MR_FILE into _TMP
+
+
+$mv ~/Downloads/$_TMP .
+$unzip $_TMP
+$rm $_TMP
 #open $find *.html
 #atom .
 }
